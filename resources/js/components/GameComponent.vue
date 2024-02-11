@@ -31,7 +31,7 @@
                 <button class="btn btn-primary" v-on:click="show_hint()">ヒント</button>
             </div>
 
-            <div class="choices-wrapper mt-5">
+            <div class="choices-wrapper mt-5 text-center">
                 <p>選択肢一覧</p>
                 <div>
                     <select name="ch" v-model="submited_answer">

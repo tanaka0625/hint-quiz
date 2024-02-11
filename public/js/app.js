@@ -3218,6 +3218,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -27583,7 +27588,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "choices-wrapper mt-5" },
+            { staticClass: "choices-wrapper mt-5 text-center" },
             [
               _c("p", [_vm._v("選択肢一覧")]),
               _vm._v(" "),
@@ -27738,8 +27743,19 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "text-center" },
     [
       _c("h1", { staticClass: "text-center" }, [_vm._v("ヒントクイズ")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("あるジャンルの人、物が1つランダムに出題されます")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("質問とそれに対する回答という形でヒントが出されます")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("ヒントは5回まででます")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("4回目のヒントまでは回答権が2回あります")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("ヒント追加の御協力よろしくお願いします")]),
       _vm._v(" "),
       _vm._l(_vm.categories, function (category) {
         return _c(
@@ -27806,7 +27822,10 @@ var render = function () {
     _vm._v(" "),
     _c(
       "form",
-      { attrs: { action: "/post/" + _vm.category.id, method: "post" } },
+      {
+        staticClass: "text-center",
+        attrs: { action: "/post/" + _vm.category.id, method: "post" },
+      },
       [
         _c("div", [
           _c("label", { attrs: { for: "choice" } }, [_vm._v("選択肢")]),

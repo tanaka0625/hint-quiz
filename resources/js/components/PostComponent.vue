@@ -7,7 +7,7 @@
             <a class="btn btn-dark" :href="'/game/' + category.id">ゲーム</a>
         </div>
 
-        <form :action="'/post/' + category.id" method="post">
+        <form :action="'/post/' + category.id" method="post" class="text-center">
            
             <div>
                 <label for="choice">選択肢</label>
