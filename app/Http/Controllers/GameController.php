@@ -25,7 +25,7 @@ class GameController extends Controller
         {
             
             $data = [
-                'category' => [],
+                'category' => $category,
                 'hints' => [],
                 'status' => 'NG',
                 'choices' => [],
