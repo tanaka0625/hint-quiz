@@ -14,6 +14,9 @@ class GameController extends Controller
         // カテゴリー取得
         $category = Category::find($request->category_id);
 
+        // 選択肢を全て選択
+        $choices = Choice::where('category_id', $category->id)->get();
+
         // 正解を決定
         $correct_choice = $category->select_correct_choice();
 
@@ -24,7 +27,9 @@ class GameController extends Controller
             $data = [
                 'category' => [],
                 'hints' => [],
-                'status' => 'NG'
+                'status' => 'NG',
+                'choices' => [],
+                'correct_choice' => []
             ];
 
         }else{
@@ -46,7 +51,9 @@ class GameController extends Controller
             $data = [
                 'category' => $category,
                 'hints' => $hints,
-                'status' => 'OK'
+                'status' => 'OK',
+                'choices' => $choices,
+                'correct_choice' => $correct_choice
             ];
         }
 

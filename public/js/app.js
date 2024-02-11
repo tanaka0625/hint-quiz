@@ -3082,6 +3082,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -3090,12 +3119,76 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     },
     category: {
-      type: String,
+      type: Object,
       required: true
     },
     status: {
       type: String,
       required: true
+    },
+    choices: {
+      type: Array,
+      required: true
+    },
+    correct_choice: {
+      type: Object,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      answer_possible_cnt: 2,
+      phase: 0,
+      selected_choices: [],
+      submited_answer: this.choices[0].text
+    };
+  },
+  // 全選択肢を始めに選択状態にする
+  created: function created() {
+    for (var i = 0; i < this.choices.length; i++) {
+      this.selected_choices.push(this.choices[i].id);
+    }
+  },
+  methods: {
+    // ヒントを表示
+    show_hint: function show_hint() {
+      this.phase++;
+      if (this.phase == 4 && this.answer_possible_cnt == 2) {
+        this.answer_possible_cnt--;
+      }
+    },
+    // 選択肢をクリック
+    click_choice: function click_choice(choice_id) {
+      // 選択されていなかった場合
+      if (!this.check_selected(choice_id)) {
+        this.selected_choices.push(choice_id);
+      } else {
+        // 選択されていた場合
+        this.selected_choices = this.selected_choices.filter(function (x) {
+          return x != choice_id;
+        });
+      }
+    },
+    // 選択肢が現在選択されているかどうか
+    check_selected: function check_selected(choice_id) {
+      return this.selected_choices.includes(choice_id);
+    },
+    // choice_idから選択肢を特定
+    identyfy_choice: function identyfy_choice(choice_id) {
+      for (var i = 0; i < this.choices.length; i++) {
+        if (choice_id == this.choices[i].id) {
+          return this.choices[i];
+        }
+      }
+    },
+    // 回答ボタン押したとき
+    submit_answer: function submit_answer(choice_id) {
+      // 回答可能回数を1減らす
+      this.answer_possible_cnt--;
+      if (this.correct_choice.text == this.submited_answer) {
+        // 回答可能回数を0にすることで答えを表示する
+        this.answer_possible_cnt = 0;
+      }
     }
   }
 });
@@ -27270,37 +27363,205 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [_c("h1", [_vm._v(_vm._s(_vm.category.name))])]),
+    _c("div", [
+      _c("h1", { staticClass: "text-center" }, [
+        _vm._v(_vm._s(_vm.category.name)),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+    ]),
     _vm._v(" "),
-    _vm.status == "NG"
-      ? _c("div", [
-          _c("h1", [
-            _vm._v(
-              "\n            こちらのカテゴリーは回答数が不足しているため出題出来ません\n        "
-            ),
-          ]),
-        ])
-      : _vm._e(),
+    _vm.status == "NG" ? _c("div", [_vm._m(1)]) : _vm._e(),
     _vm._v(" "),
     _vm.status == "OK"
       ? _c("div", [
+          _c("div", { staticClass: "text-left" }, [
+            _vm._v("回答可能回数: " + _vm._s(_vm.answer_possible_cnt)),
+          ]),
+          _vm._v(" "),
           _c(
             "div",
             { staticClass: "hints-wrapper" },
-            _vm._l(_vm.hints, function (hint) {
+            _vm._l(_vm.hints, function (hint, index) {
               return _c("div", { key: hint["answer"].id }, [
-                _c("h2", [_vm._v(_vm._s(hint["question"].text))]),
-                _vm._v(" "),
-                _c("h2", [_vm._v(_vm._s(hint["answer"].text))]),
+                index < _vm.phase
+                  ? _c("div", { staticClass: "bg-info" }, [
+                      _c("h3", { class: { "text-end": index % 2 == 1 } }, [
+                        _vm._v("Q:" + _vm._s(hint["question"].text)),
+                      ]),
+                      _vm._v(" "),
+                      _c("h3", { class: { "text-end": index % 2 == 1 } }, [
+                        _vm._v("A:" + _vm._s(hint["answer"].text)),
+                      ]),
+                    ])
+                  : _vm._e(),
               ])
             }),
             0
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-center" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                on: {
+                  click: function ($event) {
+                    return _vm.show_hint()
+                  },
+                },
+              },
+              [_vm._v("ヒント")]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "choices-wrapper mt-5" },
+            [
+              _c("p", [_vm._v("選択肢一覧")]),
+              _vm._v(" "),
+              _c("div", [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.submited_answer,
+                        expression: "submited_answer",
+                      },
+                    ],
+                    attrs: { name: "ch" },
+                    on: {
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.submited_answer = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                    },
+                  },
+                  _vm._l(_vm.selected_choices, function (id) {
+                    return _c(
+                      "option",
+                      { key: id, ref: "answer", refInFor: true },
+                      [_vm._v(_vm._s(_vm.identyfy_choice(id).text))]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                this.answer_possible_cnt > 0 && this.phase != 0
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function ($event) {
+                            return _vm.submit_answer()
+                          },
+                        },
+                      },
+                      [_vm._v("回答")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                this.answer_possible_cnt == 0
+                  ? _c("h2", { staticClass: "mt-2" }, [
+                      _vm._v("正解: "),
+                      _c("button", { staticClass: "btn btn-danger" }, [
+                        _vm._v(_vm._s(_vm.correct_choice.text)),
+                      ]),
+                    ])
+                  : _vm._e(),
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.choices, function (choice) {
+                return _c(
+                  "div",
+                  {
+                    key: choice.id,
+                    staticClass: "d-inline-flex flex-wrap mt-3",
+                  },
+                  [
+                    _vm.check_selected(choice.id)
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger me-1",
+                            on: {
+                              click: function ($event) {
+                                return _vm.click_choice(choice.id)
+                              },
+                            },
+                          },
+                          [_vm._v(_vm._s(choice.text))]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.check_selected(choice.id)
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary me-1",
+                            on: {
+                              click: function ($event) {
+                                return _vm.click_choice(choice.id)
+                              },
+                            },
+                          },
+                          [_vm._v(_vm._s(choice.text))]
+                        )
+                      : _vm._e(),
+                  ]
+                )
+              }),
+            ],
+            2
           ),
         ])
       : _vm._e(),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-end" }, [
+      _c("a", { staticClass: "btn btn-dark", attrs: { href: "/" } }, [
+        _vm._v("ホーム"),
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "btn btn-dark", attrs: { href: "/post" } }, [
+        _vm._v("ヒント追加"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", [
+      _vm._v(
+        "\n            こちらのカテゴリーはヒント数が不足しているため出題出来ません"
+      ),
+      _c("br"),
+      _vm._v(
+        "\n            右上のヒント追加ボタンからヒントの追加にご協力をお願いします\n        "
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -27326,19 +27587,23 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("h1", [_vm._v("ヒントクイズ")]),
+      _c("h1", { staticClass: "text-center" }, [_vm._v("ヒントクイズ")]),
       _vm._v(" "),
       _vm._l(_vm.categories, function (category) {
-        return _c("div", { key: category.id }, [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-primary",
-              attrs: { href: "/game/" + category.id },
-            },
-            [_vm._v(_vm._s(category.name))]
-          ),
-        ])
+        return _c(
+          "div",
+          { key: category.id, staticClass: "d-inline-flex flex-wrap mt-3" },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary me-1",
+                attrs: { href: "/game/" + category.id },
+              },
+              [_vm._v(_vm._s(category.name))]
+            ),
+          ]
+        )
       }),
     ],
     2
