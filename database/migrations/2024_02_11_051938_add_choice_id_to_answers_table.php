@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnswersTable extends Migration
+class AddChoiceIdToAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
-            $table->id();
-            $table->text('text');
-            $table->integer('question_id');
-            $table->integer('user_id');
-            $table->timestamps();
+        Schema::table('answers', function (Blueprint $table) {
+            $table->integer('choice_id');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answers');
+        Schema::table('answers', function (Blueprint $table) {
+            $table->dropColumn('choice_id');
+        });
     }
 }
