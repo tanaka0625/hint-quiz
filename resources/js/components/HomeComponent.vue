@@ -2,7 +2,7 @@
     <div>
         <h1>ヒントクイズ</h1>
         <div v-for="category in categories" :key="category.id">
-            <a class="btn btn-primary" :href="'/game?category=' + category.id">{{ category.name }}</a>
+            <a class="btn btn-primary" :href="'/game/'+ category.id">{{ category.name }}</a>
 
         </div>
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,4 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/game/{category_id}', [App\Http\Controllers\GameController::class, 'index']);
