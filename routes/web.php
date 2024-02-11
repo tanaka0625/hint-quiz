@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,5 @@ use App\Http\Controllers\GameController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/game/{category_id}', [App\Http\Controllers\GameController::class, 'index']);
+Route::get('/post/{category_id}', [App\Http\Controllers\PostController::class, 'index']);
+Route::post('/post/{category_id}', [App\Http\Controllers\PostController::class, 'add']);
