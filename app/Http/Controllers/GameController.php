@@ -44,9 +44,7 @@ class GameController extends Controller
                 $hints[$i]['answer'] = $answers[$i];
                 $hints[$i]['question'] = Question::find($answers[$i]->question_id);
             }
-            // dd($hints);
-            // dd(array_column($hints, 'choice_id'));
-            // dd(array_column($hints, 'question_id'));
+          
 
             $data = [
                 'category' => $category,

@@ -94,7 +94,7 @@
             show_hint: function() {
                 this.phase++;
 
-                if(this.phase == 4 && this.answer_possible_cnt == 2)
+                if(this.phase == 5 && this.answer_possible_cnt == 2)
                 {
                     this.answer_possible_cnt--;
                 }

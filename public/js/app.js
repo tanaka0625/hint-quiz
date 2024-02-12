@@ -3153,7 +3153,7 @@ __webpack_require__.r(__webpack_exports__);
     // ヒントを表示
     show_hint: function show_hint() {
       this.phase++;
-      if (this.phase == 4 && this.answer_possible_cnt == 2) {
+      if (this.phase == 5 && this.answer_possible_cnt == 2) {
         this.answer_possible_cnt--;
       }
     },
