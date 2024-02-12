@@ -47,7 +47,7 @@ class Category extends Model
             if($answer_count>4)
             {
                 // list2には出題可能な選択肢のIDが入る
-                $list2[$i] = $choice_ids[$i];
+                $list2[] = $choice_ids[$i];
             }
 
             
