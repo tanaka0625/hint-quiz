@@ -27745,7 +27745,9 @@ var render = function () {
     "div",
     { staticClass: "text-center" },
     [
-      _c("h1", { staticClass: "text-center" }, [_vm._v("ヒントクイズ")]),
+      _c("h1", { staticClass: "text-center" }, [
+        _vm._v("主観アキネータークイズ"),
+      ]),
       _vm._v(" "),
       _c("p", [_vm._v("あるジャンルの人、物が1つランダムに出題されます")]),
       _vm._v(" "),

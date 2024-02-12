@@ -1,6 +1,6 @@
 <template>
     <div class="text-center">
-        <h1 class="text-center">ヒントクイズ</h1>
+        <h1 class="text-center">主観アキネータークイズ</h1>
         <p>あるジャンルの人、物が1つランダムに出題されます</p>
         <p>質問とそれに対する回答という形でヒントが出されます</p>
         <p>ヒントは5回まででます</p>

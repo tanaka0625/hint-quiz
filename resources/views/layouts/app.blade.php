@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     
-    <title>ヒントクイズ</title>
+    <title>主観アキネータークイズ</title>
 </head>
 <body>
     <div id="app">
