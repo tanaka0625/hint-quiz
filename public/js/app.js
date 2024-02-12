@@ -27545,7 +27545,7 @@ var render = function () {
     _vm.status == "NG" ? _c("div", [_vm._m(0)]) : _vm._e(),
     _vm._v(" "),
     _vm.status == "OK"
-      ? _c("div", [
+      ? _c("div", { staticClass: "mb-5" }, [
           _c("div", { staticClass: "text-left" }, [
             _vm._v("回答可能回数: " + _vm._s(_vm.answer_possible_cnt)),
           ]),

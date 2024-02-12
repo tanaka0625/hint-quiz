@@ -15,7 +15,7 @@
             </h1>
         </div>
 
-        <div v-if="status=='OK'">
+        <div v-if="status=='OK'" class="mb-5">
             <div class="text-left">回答可能回数: {{ answer_possible_cnt }}</div>
             <div class="hints-wrapper">
                 <div v-for="(hint, index) in hints" :key="hint['answer'].id">
