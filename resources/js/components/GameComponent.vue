@@ -3,6 +3,7 @@
         <div>
             <h1 class="text-center">{{ category.name }}</h1>
             <div class="text-end">
+                <a class="btn btn-dark" href="">出題</a>
                 <a class="btn btn-dark" href="/">ホーム</a>
                 <a class="btn btn-dark" :href="'/post/' + category.id">ヒント追加</a>
             </div>

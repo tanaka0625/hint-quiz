@@ -3111,6 +3111,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -27527,6 +27528,10 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "text-end" }, [
+        _c("a", { staticClass: "btn btn-dark", attrs: { href: "" } }, [
+          _vm._v("出題"),
+        ]),
+        _vm._v(" "),
         _c("a", { staticClass: "btn btn-dark", attrs: { href: "/" } }, [
           _vm._v("ホーム"),
         ]),
