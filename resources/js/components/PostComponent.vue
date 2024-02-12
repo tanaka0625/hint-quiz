@@ -34,7 +34,7 @@
                 </select>
             </div>
 
-            <input class="btn btn-dark" type="submit" value="送信">
+            <input class="btn btn-dark mt-2" type="submit" value="送信">
             <input type="hidden" name="_token" :value="csrf">
             
         </form>

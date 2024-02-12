@@ -27871,7 +27871,7 @@ var render = function () {
         _vm._m(0),
         _vm._v(" "),
         _c("input", {
-          staticClass: "btn btn-dark",
+          staticClass: "btn btn-dark mt-2",
           attrs: { type: "submit", value: "送信" },
         }),
         _vm._v(" "),
